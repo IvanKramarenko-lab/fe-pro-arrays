@@ -6,7 +6,7 @@
 */
 function forEach(array, callback) {
   for (let i = 0; i < array.length; i++) {
-    callback(array[i], [i], array)
+    callback(array[i], i, array);
   }
 }
 
@@ -19,8 +19,8 @@ function forEach(array, callback) {
 function map(array, callback) {
   const newArray = [];
   for (let i = 0; i < array.length; i++) {
-    const callBackResult = callback(array[i], [i], array)
-    newArray.push(callBackResult)
+    const callbackResult = callback(array[i], i, array);
+    newArray.push(callbackResult);
   }
   return newArray;
 }
@@ -30,14 +30,12 @@ function map(array, callback) {
  Это используется для удобного быстрого перебора массива. Функция должна ВЕРНУТЬ НОВЫЙ массив, который включает в себя элементы только те, для которых callback вернул true.
  Фишка задания сделать свою реализацию, чтобы понять, как он работает под капотом. Для перебора советую использовать for цикл
  Помните, что вы передаете функцию, которая ожидает 3 аргумента, текущий элемент, индекс и сам массив. Автоматическая проверка будет это учитывать.
-*/
+// */
 function filter(array, callback) {
   const newArray = [];
   for (let i = 0; i < array.length; i++) {
     const callbackResult = callback(array[i], i, array);
-    if (callbackResult) {
-      newArray.push(array[i]);
-    }
+    if (callbackResult) newArray.push(array[i]);
   }
   return newArray;
 }
@@ -69,9 +67,7 @@ function reduce(array, callback, initialValue) {
 function some(array, callback) {
   for (let i = 0; i < array.length; i++) {
     const callbackResult = callback(array[i], i, array);
-    if (callbackResult) {
-      return callbackResult;
-    }
+    if (callbackResult) return true;
   }
   return false;
 }
@@ -85,9 +81,7 @@ function some(array, callback) {
 function every(array, callback) {
   for (let i = 0; i < array.length; i++) {
     const callbackResult = callback(array[i], i, array);
-    if (!callbackResult) {
-      return callbackResult;
-    }
+    if (!callbackResult) return false;
   }
   return true;
 }
