@@ -70,7 +70,7 @@ function some(array, callback) {
   for (let i = 0; i < array.length; i++) {
     const callbackResult = callback(array[i], i, array);
     if (callbackResult) {
-      return callbackResult;
+      return true;
     }
   }
   return false;
@@ -86,7 +86,7 @@ function every(array, callback) {
   for (let i = 0; i < array.length; i++) {
     const callbackResult = callback(array[i], i, array);
     if (!callbackResult) {
-      return callbackResult;
+      return false;
     }
   }
   return true;
